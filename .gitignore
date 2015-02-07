@@ -13,9 +13,6 @@
 *.cmxa
 
 ### Assemblage ###
-/Makefile
-/META
-/*.install
 /_build
 /.merlin
 
