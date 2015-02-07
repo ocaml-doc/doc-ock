@@ -4,11 +4,7 @@ authors: [
   "Leo White <lpw25@cl.cam.ac.uk>"
 ]
 license: "ISC"
-depends: [
-  "assemblage"
-]
 build: [
-  ["assemblage" "setup" "--dumpast=false"]
   [make]
   [make "install"]
 ]
