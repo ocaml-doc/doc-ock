@@ -1,5 +1,5 @@
-version  = "ea9952"
-requires = "compiler-libs.common"
+version  = "da23e5"
+requires = "compiler-libs.common octavius"
 archive(byte) = "doc-ock.cma"
 archive(byte, plugin) = "doc-ock.cma"
 archive(native) = "doc-ock.cmxa"
