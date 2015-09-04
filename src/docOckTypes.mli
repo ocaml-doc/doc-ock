@@ -88,9 +88,48 @@ module Documentation : sig
     | Return of 'a text
     | Tag of string * 'a text
 
-  type 'a t =
+  module Error : sig
+
+    module Position : sig
+
+      type t =
+        { line: int;
+          column: int; }
+
+    end
+
+    module Offset : sig
+
+      type t =
+        { start: Position.t;
+          finish: Position.t; }
+
+    end
+
+    module Location : sig
+
+      type t =
+        { filename: string;
+          start: Position.t;
+          finish: Position.t; }
+
+    end
+
+    type 'a t =
+      { origin: 'a Identifier.any; (** TODO remove this *)
+        offset: Offset.t;
+        location: Location.t option;
+        message: string; }
+
+  end
+
+  type 'a body =
     { text: 'a text;
       tags: 'a tag list; }
+
+  type 'a t =
+    | Ok of 'a body
+    | Error of 'a Error.t
 
   type 'a comment =
     | Documentation of 'a t
@@ -426,9 +465,13 @@ end
 
 module Unit : sig
 
-  type 'a import =
-    | Unresolved of string * Digest.t option
-    | Resolved of 'a
+  module Import : sig
+
+    type 'a t =
+      | Unresolved of string * Digest.t option
+      | Resolved of 'a
+
+  end
 
   module Source : sig
 
@@ -439,12 +482,27 @@ module Unit : sig
 
   end
 
+  module Packed : sig
+
+    type 'a item =
+      { id: 'a Identifier.module_;
+        path: 'a Path.module_; }
+
+    type 'a t = 'a item list
+
+  end
+
+  type 'a content =
+    | Module of 'a Signature.t
+    | Pack of 'a Packed.t
+
   type 'a t =
     { id: 'a Identifier.module_;
       doc: 'a Documentation.t;
       digest: Digest.t;
-      imports: 'a import list;
+      imports: 'a Import.t list;
       source: 'a Source.t option;
-      items: 'a Signature.t }
+      interface: bool;
+      content: 'a content; }
 
 end

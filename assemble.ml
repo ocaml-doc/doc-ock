@@ -17,7 +17,7 @@
 open Assemblage
 
 (* OCamlfind packages *)
-let pkgs = [pkg "compiler-libs.common"]
+let pkgs = [pkg "compiler-libs.common"; pkg "octavius"]
 
 (* Doc flag *)
 let doc = Flags.( v (`Compile `Intf) ["-doc"] )
@@ -31,13 +31,17 @@ let docOckPaths = unit "docOckPaths" (`Path ["src"])
 let docOckTypes = unit "docOckTypes" (`Path ["src"])
 let docOckMaps = unit "docOckMaps" (`Path ["src"])
 let docOckPredef = unit "docOckPredef" (`Path ["src"])
-let docOckEnvironment = unit "docOckEnvironment" (`Path ["src"])
+let docOckNameEnv = unit "docOckNameEnv" (`Path ["src"])
+let docOckIdentEnv = unit "docOckIdentEnv" (`Path ["src"])
+let docOckLookup = unit "docOckLookup" (`Path ["src"])
 let docOckAttrs = unit "docOckAttrs" (`Path ["src"])
 let docOckCmi = unit "docOckCmi" (`Path ["src"])
 let docOckCmti = unit "docOckCmti" (`Path ["src"])
+let docOckCmt = unit "docOckCmt" (`Path ["src"])
 let docOckComponents = unit "docOckComponents" (`Path ["src"])
 let docOckComponentTbl = unit "docOckComponentTbl" (`Path ["src"])
 let docOckResolve = unit "docOckResolve" (`Path ["src"])
+let docOckSubst = unit "docOckSubst" (`Path ["src"])
 let docOck = unit "docOck" ~flags:no_alias_deps (`Path ["src"])
 
 let units =
@@ -45,17 +49,21 @@ let units =
     docOckTypes;
     docOckMaps;
     docOckPredef;
-    docOckEnvironment;
+    docOckNameEnv;
+    docOckIdentEnv;
+    docOckLookup;
     docOckAttrs;
     docOckCmi;
     docOckCmti;
+    docOckCmt;
     docOckComponents;
     docOckComponentTbl;
     docOckResolve;
+    docOckSubst;
     docOck ]
 
 (* Library *)
 let l = lib (*~flags:doc*) ~deps:pkgs "doc-ock" (`Units units)
 
 (* Assemble *)
-let () = assemble (project "doc-ock-lib" [l])
+let () = assemble (project "doc-ock" [l])

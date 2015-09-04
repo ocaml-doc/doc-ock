@@ -18,3 +18,27 @@ val read_interface: 'a -> string -> Typedtree.signature ->
   'a DocOckPaths.Identifier.module_ *
   'a DocOckTypes.Documentation.t *
   'a DocOckTypes.Signature.t
+
+val read_label : string -> DocOckTypes.TypeExpr.label option
+
+val read_module_type : 'a DocOckIdentEnv.t ->
+  'a DocOckPaths.Identifier.signature -> int ->
+  Typedtree.module_type -> 'a DocOckTypes.ModuleType.expr
+
+val read_value_description : 'a DocOckIdentEnv.t ->
+  'a DocOckPaths.Identifier.signature ->
+  Typedtree.value_description -> 'a DocOckTypes.Signature.item
+
+val read_type_declarations : 'a DocOckIdentEnv.t ->
+  'a DocOckPaths.Identifier.signature ->
+  Typedtree.type_declaration list ->
+  'a DocOckTypes.Signature.item list
+
+val read_module_type_declaration : 'a DocOckIdentEnv.t ->
+  'a DocOckPaths.Identifier.signature ->
+  Typedtree.module_type_declaration -> 'a DocOckTypes.ModuleType.t
+
+val read_class_type_declarations : 'a DocOckIdentEnv.t ->
+  'a DocOckPaths.Identifier.signature ->
+  Typedtree.class_type Typedtree.class_infos list ->
+  'a DocOckTypes.Signature.item list

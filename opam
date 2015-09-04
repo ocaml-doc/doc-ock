@@ -4,9 +4,14 @@ authors: [
   "Leo White <lpw25@cl.cam.ac.uk>"
 ]
 license: "ISC"
+version: "0.2.0"
+depends: [
+  "octavius"
+  "ocamlfind"
+]
 build: [
   [make]
   [make "install"]
 ]
 remove: ["ocamlfind" "remove" "doc-ock"]
-available: [ compiler = "4.02.1+doc" ]
+available: [ compiler >= "4.02.2" & compiler <= "4.03" ]

@@ -14,30 +14,17 @@
  * OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  *)
 
-open DocOck
-open TestCommon
+open DocOckPaths
+open DocOckTypes
 
-let read_file cmti =
-  match read_cmti (fun name _ -> name) cmti with
-  | Not_an_interface ->
-      raise (Error(cmti, "not an interface"))
-  | Wrong_version ->
-      raise (Error(cmti, "wrong OCaml version"))
-  | Corrupted ->
-      raise (Error(cmti, "corrupted"))
-  | Not_a_typedtree ->
-      raise (Error(cmti, "not a typedtree"))
-  | Not_an_implementation ->
-      raise (Error(cmti, "not an implementation"))
-  | Ok intf -> intf
+val signature : equal:('a -> 'a -> bool) ->
+  'a Identifier.signature -> 'a Identifier.signature ->
+  'a Signature.t -> 'a Signature.t
 
-let main () =
-  let files = get_files "cmti" in
-    try
-      test read_file (List.rev files);
-      exit 0
-    with Error(file, msg) ->
-      prerr_endline (file ^ ": " ^ msg);
-      exit 1
+val class_signature : equal:('a -> 'a -> bool) ->
+  'a Identifier.class_signature -> 'a Identifier.class_signature ->
+  'a ClassSignature.t -> 'a ClassSignature.t
 
-let () = main ()
+val datatype : equal:('a -> 'a -> bool) ->
+  'a Identifier.datatype -> 'a Identifier.datatype ->
+  'a TypeDecl.t -> 'a TypeDecl.t
