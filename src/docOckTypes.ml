@@ -458,8 +458,12 @@ and TypeExpr : sig
       { name: string;
         type_: 'a TypeExpr.t; }
 
+    type 'a field =
+      | Method of 'a method_
+      | Inherit of 'a TypeExpr.t
+
     type 'a t =
-      { methods: 'a method_ list;
+      { fields: 'a field list;
         open_ : bool; }
 
   end
