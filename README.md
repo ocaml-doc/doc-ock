@@ -1,6 +1,6 @@
 Doc-ock — Extract documentation from OCaml files
 ------------------------------------------------
-%%VERSION%%
+v1.2.0
 
 Doc-ock is a library extract documentation from OCaml files
 
