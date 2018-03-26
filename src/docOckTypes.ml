@@ -174,7 +174,7 @@ and ModuleType : sig
     | ModuleEq of 'a Fragment.module_ * 'a Module.Equation.t
     | TypeEq of 'a Fragment.type_ * 'a TypeDecl.Equation.t
     | ModuleSubst of 'a Fragment.module_ * 'a Path.module_
-    | TypeSubst of 'a Fragment.type_ * string list * 'a Path.type_
+    | TypeSubst of 'a Fragment.type_ * 'a TypeDecl.Equation.t
 
   type 'a expr =
     | Path of 'a Path.module_type
