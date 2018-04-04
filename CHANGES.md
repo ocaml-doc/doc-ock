@@ -1,3 +1,8 @@
+v1.2.1
+------
+
+- Fix assertion failure (ocaml/odoc#103).
+
 v1.2.0
 ------
 
