@@ -2,7 +2,7 @@ Doc-ock — Extract documentation from OCaml files
 ------------------------------------------------
 %%VERSION%%
 
-> **NOTE**: this library is deprecated, the functionality implemented here can now be found as the `model` and `xref` libraries of the [odoc](https://github.com/ocaml/odoc) package.
+> **NOTE**: this library is deprecated as a standalone project. The functionality implemented here can now be found in the [`model`](https://github.com/ocaml/odoc/tree/master/src/model) and [`xref`](https://github.com/ocaml/odoc/tree/master/src/xref) sub-libraries of the [odoc](https://github.com/ocaml/odoc) package.
 
 Doc-ock is a library extract documentation from OCaml files
 
